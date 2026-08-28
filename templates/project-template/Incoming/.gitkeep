@@ -1,0 +1,3 @@
+Keeps this empty directory in git. Do not delete — an intake directory that
+exists and is empty is the "all caught up" signal; a missing one says nothing.
+Remove this file once real material lands here.
