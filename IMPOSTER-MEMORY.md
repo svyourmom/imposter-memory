@@ -147,6 +147,11 @@ These hold everywhere and cannot be overridden by any project.
    marker directly beneath its title, updated whenever the file changes.
    Evidence files never carry one, because they never change.
 
+10. **Task lists stay sorted.** Position in a `## Open` table *is* the priority,
+    so the table is re-sorted whenever priority changes, and row 1 carries a
+    `**(Top priority)**` marker. Priority is never encoded as a date — see
+    [the priority model](#the-priority-model).
+
 ---
 
 ## Directory layout
@@ -324,7 +329,7 @@ dismissed section beneath them.
 
 | # | Item | Notes |
 |---|------|-------|
-| 1 | Confirm the delivery format with the client | Raised twice, no answer recorded (`2026-03-09-cheerios-sync.md`) |
+| 1 | **(Top priority)** Confirm the delivery format with the client | Raised twice, no answer recorded (`2026-03-09-cheerios-sync.md`) |
 | 2 | Rebuild the packaging step | Blocked until item 1 resolves |
 
 ## Dismissed
@@ -335,6 +340,21 @@ dismissed section beneath them.
 ```
 
 Dismissal is never silent. Every removed item leaves a row naming what closed it.
+
+**Row order is the ranking, and row 1 is marked.** The `## Open` table is sorted
+by priority, so position carries the rank — which only works if the table is
+actively **re-sorted whenever priority changes**, rather than new items landing
+at the bottom and old ones drifting down. Row 1 additionally carries a plain
+`**(Top priority)**` marker.
+
+The marker is redundant with position on purpose. A list read cold — by a
+stand-in handed only this one project directory, which invariant 7 guarantees is
+possible — should not require inferring rank from row order, and a table that has
+silently fallen out of sorted order is otherwise indistinguishable from a
+correctly sorted one.
+
+There is deliberately **no due-date, deadline, or priority-tag column**. See
+[the priority model](#the-priority-model).
 
 ### Evidence naming and storage
 
@@ -442,6 +462,9 @@ Within its own directory an agent will:
 1. Read everything in its intake.
 2. Extract facts into its living notes, updating freshness markers.
 3. Maintain `action-items.md`, ordered by **priority within this project only**.
+   Re-sort the `## Open` table if that ordering has changed, and move the
+   `**(Top priority)**` marker with row 1 — a new item is not appended to the
+   bottom unless the bottom is where it actually belongs.
 4. Dismiss items that its new material clearly closes, recording each with the
    evidence.
 5. Move processed sources into its evidence directory, in the right year/month
@@ -490,7 +513,8 @@ The collector then:
    judgment cannot be derived from the project lists, since each was written
    without knowledge of the others, and it changes for reasons entirely outside
    any project.
-5. Reconciles the master task list **in place**.
+5. Reconciles the master task list **in place**, re-sorted so that position
+   still reflects the ranking it just determined, with row 1 marked.
 6. Marks the slot of any project that failed to report.
 7. Refreshes the core-memory block.
 8. Reports to the owner.
@@ -548,10 +572,49 @@ most *within that engagement*, judged with no knowledge of anything outside it.
 against work belonging to no project at all, and it responds to forces no project
 can see.
 
+Both are expressed the same way: **position in the `## Open` table is the rank**,
+the table is re-sorted whenever priority changes, and row 1 carries a
+`**(Top priority)**` marker. Nothing else encodes priority.
+
 The same item therefore legitimately appears in both lists with different ranks.
 An item that is first in the Cheerios list may sit third on the master list,
 behind an unrelated Trix deadline and a personal administrative task. This is not
 duplication of a fact; it is two different judgments, both correct.
+
+### The master list ranks personal work alongside project work
+
+`status/owner-action-items.md` is one ranked list, and standing personal or
+administrative obligations — mandatory training, continuing education, HR
+deadlines, email and calendar management — sit in it at their real position,
+interleaved with items escalated from projects. They are not a second list and
+not a lower tier. The worked example ranks a benefits-enrollment deadline third,
+above a project's own top item, for exactly this reason.
+
+This has to be deliberate, because the routing path will not do it for you.
+Material arrives addressed to a project and gets escalated from there; work that
+belongs to no project arrives through no route at all, and so is captured only
+when something happens to mention it. The most reliably neglected work is
+therefore exactly the work with no project to carry it.
+
+### No date-based urgency, ever
+
+There is no due-date field, no deadline column, no `due:` tag, and no computed
+urgency score — not as an oversight, but as a boundary. *"Get this done by
+Thursday"* is a **reminder** activity, and this system is a **memory**. A memory
+records that a commitment exists, who made it, and what it blocks; something else
+is responsible for interrupting you on the day.
+
+A dated commitment is recorded as a fact in `memory/events.md`, cited to the
+source that stated it, and it may of course be the *reason* an item ranks first.
+What does not exist is a mechanism that sorts, escalates, or surfaces by date on
+its own — that is the point at which a memory quietly becomes a bad calendar.
+
+Two alternatives were considered and set aside. An explicit `P1`/`P2`/`P3` tag per
+row survives a table falling out of sorted order, but it is a second priority
+signal that can itself drift out of agreement with position. A weighted numeric
+score contradicts the collector's "show your reasoning, never apply a hidden
+rule" design. Revisit the first only if position-based ranking proves too fragile
+in practice.
 
 ### Master entries are self-contained
 
@@ -646,7 +709,8 @@ even if almost nothing is known about it. Recording a name with three known fact
 is better than losing it in meeting noise.
 
 1. Create the directory with the **full standard skeleton**, including empty
-   files.
+   files — copy `templates/project-template/` rather than rebuilding it from the
+   layout diagram above.
 2. Write the README with complete front matter. Unknown values are `TBD`, never
    guessed — a new project routinely has `owner: TBD`.
 3. Write the first intake note capturing what is known and, explicitly, what is

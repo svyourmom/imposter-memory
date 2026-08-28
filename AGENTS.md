@@ -51,6 +51,11 @@ intake  →  living notes  →  immutable evidence
 9. **Freshness is recorded.** Every living note carries a
    `> Last updated: YYYY-MM-DD` line beneath its title, updated whenever the
    file changes. Evidence files never carry one, because they never change.
+10. **Task lists stay sorted.** Position in a `## Open` table *is* the priority,
+    so the table is re-sorted whenever priority changes, and row 1 carries a
+    `**(Top priority)**` marker. There is no due-date or deadline field anywhere
+    in this system, by design — see `IMPOSTER-MEMORY.md` §"No date-based
+    urgency, ever".
 
 ## Roles
 
