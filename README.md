@@ -106,8 +106,9 @@ Three things worth knowing before you do that:
 2. Build the master skeleton from `example/`: `incoming/`, `status/`,
    `memory/`, `artifacts/`, `Projects/`, and a root `README.md` carrying the
    front matter and the registry table.
-3. Create your first project with the full standard skeleton — including the
-   files that will be empty.
+3. Create your first project by copying `templates/project-template/` to
+   `Projects/<Name>/` — the whole directory, including the files that are empty.
+   Then fill in its README front matter.
 4. Add the project to the registry in the master `README.md`. It is not a
    project until that row exists.
 5. Drop material into `incoming/` and process it.
@@ -125,6 +126,7 @@ the agent roles just make the processing repeatable.
 | `IMPOSTER-MEMORY.md` | The complete specification. Structures, formats, rules, processing flow, worked example |
 | `AGENTS.md` | The operating contract. The short version an agent reads first; invariants that nothing overrides |
 | `example/` | A worked example tree — master index, project README, task list, living note, and the full directory layout |
+| `templates/` | The canonical project skeleton, as real files you copy into your own tree |
 
 `IMPOSTER-MEMORY.md` is the authority. `AGENTS.md` is the contract that
 implements it. If they ever disagree, the spec wins and the contract is a bug.
@@ -151,6 +153,9 @@ you decide whether this suits you:
   project has been deprioritized will phrase its findings to match, softening
   a real problem into something that reads as tolerable. All weighing happens
   later, in one place, where it is visible and correctable.
+- **Position is the priority.** Task lists are sorted, re-sorted whenever
+  priority changes, and row 1 is marked `(Top priority)` so a cold reader never
+  has to infer rank from row order.
 - **The cross-project ranking is shown, not hidden.** The collector presents
   its reasoning every run so the owner can correct it, rather than applying a
   rule nobody can see.
@@ -161,6 +166,11 @@ you decide whether this suits you:
 
 - **Not a ticketing system.** It does not replace a formal tracker. It is
   working memory, and items in it frequently have no counterpart anywhere.
+- **Not a reminder system.** There is no due-date field, no deadline column, and
+  nothing that surfaces an item because a date arrived. A dated commitment is
+  recorded as a fact and may well be *why* something ranks first, but priority is
+  expressed as position in a sorted list — row 1, marked. Interrupting you on the
+  day is a calendar's job.
 - **Not complete.** Sources are read as they arrive. Nothing reconstructs
   history that was never captured.
 - **Does not resolve contradictions.** Where two sources disagree, both are
@@ -177,6 +187,34 @@ to make the worked example readable. The projects throughout — Cheerios, Trix,
 Fruit Loops, Honeycomb — are placeholders, not real engagements.
 
 ---
+
+## Known gaps
+
+Found by deploying this system by hand and following the instructions above
+literally. Recorded here because a gap you can see is worth more than one you
+discover the hard way.
+
+- **No init sequence.** Standing up a tree is entirely manual — five prose steps,
+  no script. An init step should also greet the reader and, importantly, prompt
+  any assistant involved to re-sync whatever memory *it* keeps about the tree,
+  which can drift from the tree's own contents without either side noticing.
+- **The core-memory block can go stale between runs.** The spec says the collector
+  and the audit pass refresh it. It says nothing about the far more common case —
+  a human adding one row to a task list outside any formal run — after which the
+  block quietly no longer matches. Refresh it when you edit a list by hand.
+- **Don't clone this repository as your working tree.** Copy the two documents
+  out of it instead, as the manual way says. Cloning gives the root `README.md`
+  two incompatible jobs — public documentation and your private master index and
+  registry — and puts your working notes in a public repo's git history.
+- **"Project" here always means `Projects/<Name>/`** — a directory inside an
+  Imposter Memory tree. Never a git repository, a GitHub project, or any other
+  sense of the word. The spec never says this outright, and conflating the two is
+  how the cloning mistake above happens in the first place.
+- **Importing existing content is not specified, and it loses evidence.** The
+  manual way covers building an empty tree, not bringing an existing body of work
+  into one. Structure carries across easily; the cited *sources* do not, and you
+  end up with living notes citing evidence files that were never brought over.
+  Gather and file the sources as a deliberate, separate step.
 
 ## Status
 
