@@ -184,18 +184,26 @@ These hold everywhere and cannot be overridden by any project.
 │
 ├── Projects/
 │   ├── README.md              # Portfolio-level index
-│   ├── .cursor/templates/     # Canonical project templates
+│   ├── templates/             # Canonical project template
 │   ├── Cheerios/
 │   ├── Trix/
 │   └── FruitLoops/
 │
-└── .cursor/skills/            # The only copies of the processing skills
-    ├── process-incoming/
-    └── audit-pass/
+└── procedures/                # The only copies of the two procedures
+    ├── process-incoming.md
+    └── audit-pass.md
 ```
 
-The `.cursor/` paths are one tool's convention. Any location works, as long as
-there is exactly one copy of each skill and every consumer reads that copy.
+The names `templates/` and `procedures/` are not load-bearing, and neither is
+their position in the tree — put them wherever your tooling looks. Some tools
+expect a directory like `.cursor/skills/` or an equivalent of their own; that is
+fine. The requirement is only that **exactly one copy of each procedure exists
+and every consumer reads that copy.**
+
+No agent runtime, packaging format, or "skill" mechanism is assumed anywhere in
+this specification. A procedure may live as a skill, a prompt file, a command, a
+runbook, or a checklist on paper. The entire system is designed to be runnable
+by a human with a text editor.
 
 ### A project
 
@@ -235,8 +243,8 @@ one.
 ### README front matter
 
 Every README declares its own structure in YAML. Agents read these values rather
-than assuming directory names, which is what allows one skill to operate at any
-level of the tree.
+than assuming directory names, which is what allows one procedure to operate at
+any level of the tree.
 
 Master:
 

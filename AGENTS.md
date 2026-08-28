@@ -77,7 +77,7 @@ thing that distinguishes a project with nothing to say from an agent that died.
 
 ## Procedures
 
-Two runnable procedures, kept as skills in one canonical location:
+Two runnable procedures, each kept in exactly one canonical location:
 
 - **The intake run** — on demand. Router, then every Active project's agent,
   then the collector.
@@ -86,6 +86,10 @@ Two runnable procedures, kept as skills in one canonical location:
 
 Keep exactly one copy of each procedure and have every consumer read that copy.
 Synchronized duplicates drift, always, and the drift is silent.
+
+How they are stored is not specified — a skill, a prompt file, a command, or a
+printed checklist all satisfy this. Nothing in this contract assumes an agent
+runtime exists.
 
 ## Definition of done for an intake run
 

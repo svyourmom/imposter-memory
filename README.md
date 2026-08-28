@@ -111,10 +111,15 @@ Three things worth knowing before you do that:
    Then fill in its README front matter.
 4. Add the project to the registry in the master `README.md`. It is not a
    project until that row exists.
-5. Drop material into `incoming/` and process it.
+5. Copy `templates/procedures/` into your tree, keeping one canonical copy of
+   each.
+6. Drop material into `incoming/` and process it, following
+   `process-incoming.md`.
 
-You do not need an agent to use this. The layout and the rules work by hand;
-the agent roles just make the processing repeatable.
+You do not need an agent to use this, and nothing here assumes one exists. The
+layout and the rules work by hand, the two procedures are written to be followed
+by a person, and no packaging format — skills, prompt files, commands — is
+required or assumed. The agent roles just make the processing repeatable.
 
 ---
 
@@ -126,7 +131,7 @@ the agent roles just make the processing repeatable.
 | `IMPOSTER-MEMORY.md` | The complete specification. Structures, formats, rules, processing flow, worked example |
 | `AGENTS.md` | The operating contract. The short version an agent reads first; invariants that nothing overrides |
 | `example/` | A worked example tree — master index, project README, task list, living note, and the full directory layout |
-| `templates/` | The canonical project skeleton, as real files you copy into your own tree |
+| `templates/` | What you copy into your own tree — the project skeleton, and the two procedures as tool-neutral Markdown |
 
 `IMPOSTER-MEMORY.md` is the authority. `AGENTS.md` is the contract that
 implements it. If they ever disagree, the spec wins and the contract is a bug.

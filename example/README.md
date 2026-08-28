@@ -45,9 +45,9 @@ project finds the same files in the same places.
 │   ├── FruitLoops/
 │   └── Honeycomb/             # Archived — no agent runs, no routing
 │
-└── skills/                    # One canonical copy of each procedure
-    ├── process-incoming/
-    └── audit-pass/
+└── procedures/                # One canonical copy of each procedure
+    ├── process-incoming.md
+    └── audit-pass.md
 ```
 
 Each project is identical in shape:

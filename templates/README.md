@@ -1,7 +1,16 @@
 # Templates
 
-The canonical skeleton to copy when creating a project. This is the thing the
-spec means by "copy the standard skeleton" — real files, not a diagram.
+The parts of an Imposter Memory tree you copy rather than retype: the project
+skeleton, and the two runnable procedures.
+
+| | |
+|---|---|
+| `project-template/` | The standard project skeleton — what the spec means by "copy the standard skeleton", as real files rather than a diagram |
+| `procedures/` | `process-incoming.md` and `audit-pass.md`, the two runnable procedures |
+
+---
+
+## The project skeleton
 
 ## Using it
 
@@ -24,11 +33,13 @@ created all at once.
 
 ## Where this lives in your own tree
 
-`IMPOSTER-MEMORY.md` shows this at `Projects/.cursor/templates/` in its layout
-diagram. That path is one tool's convention, and the spec says so. Any location
-works, as long as there is exactly one canonical copy and everything that needs
-it reads that copy. In this repository it sits at the root, because this
-repository is documentation — not a working tree.
+Anywhere. Neither the name nor the position is load-bearing — put both
+directories where your tooling looks for them, and keep exactly one copy of
+each. In this repository they sit at the root, because this repository is
+documentation, not a working tree.
+
+Nothing here assumes a particular agent runtime or packaging format. See
+`procedures/README.md`.
 
 ## A note on "project"
 
